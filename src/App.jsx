@@ -135,7 +135,7 @@ const NAV_ITEMS = [
 
 const SOCIALS = [
   { key: 'linkedin', href: 'https://linkedin.com/in/jagadish-vijay-90a12a270', label: 'LinkedIn' },
-  { key: 'instagram', href: 'https://instagram.com', label: 'Instagram' },
+  { key: 'instagram', href: 'https://www.instagram.com/jagadish__vijay/', label: 'Instagram' },
   { key: 'youtube', href: 'https://youtube.com', label: 'YouTube' },
   { key: 'mail', href: 'mailto:jagadishvijaysachin@gmail.com', label: 'Email' },
 ];
