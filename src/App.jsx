@@ -118,6 +118,11 @@ const Icon = {
       <circle cx="12" cy="9.5" r="2.3" />
     </svg>
   ),
+  close: (p) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...p}>
+      <path d="M18 6L6 18M6 6l12 12" />
+    </svg>
+  ),
 };
 
 const NAV_ITEMS = [
@@ -591,33 +596,48 @@ function Skills() {
 /* ---------------------------------------------------------- */
 const PROJECTS = [
   {
+    id: 'enzolt',
     title: 'Enzolt Energy Commercial Campaign',
     category: 'Commercial Advertisement',
     img: enzoltAdImg,
+    videos: [
+      { id: 'Xhws3rqOK34', title: 'Video 01 - Product Overview' },
+      { id: '8cQqXlbRBV4', title: 'Video 02 - From Fear to Relief' }
+    ]
   },
   {
+    id: 'kadhal',
     title: 'Kadhal Ondrey Podhum',
     category: 'Music Video',
     img: kadhalImg,
+    videos: [
+      { id: 'NRSzsukdtCI', title: 'Official Music Video' }
+    ]
   },
   {
+    id: 'ranakalam',
     title: 'Ranakalam',
     category: 'Short Film',
     img: ranakalamImg,
+    videos: []
   },
   {
+    id: 'oxytocin',
     title: 'Oxytocin',
     category: 'Short Film',
     img: oxytocinImg,
+    videos: []
   },
   {
+    id: 'one-blink',
     title: 'One Blink Away',
     category: 'Short Film',
     img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80',
+    videos: []
   },
 ];
 
-function FeaturedWork() {
+function FeaturedWork({ onSelectProject }) {
   return (
     <section id="work" className="section-pad">
       <div className="container">
@@ -628,7 +648,6 @@ function FeaturedWork() {
               <span className="underline-mark" />
             </h2>
           </Reveal>
-
         </div>
 
         <div className="work-scroller">
@@ -637,6 +656,7 @@ function FeaturedWork() {
               key={p.title}
               className="work-card"
               style={{ transitionDelay: `${i * 0.06}s` }}
+              onClick={() => onSelectProject(p)}
             >
               <img src={p.img} alt={p.title} onError={onImgError} loading="lazy" />
               <div className="work-card-overlay">
@@ -653,6 +673,76 @@ function FeaturedWork() {
         </div>
       </div>
     </section>
+  );
+}
+
+/* ---------------------------------------------------------- */
+/* VIDEO POPUP MODAL                                             */
+/* ---------------------------------------------------------- */
+function VideoModal({ project, onClose }) {
+  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'auto';
+    };
+  }, [onClose]);
+
+  if (!project) return null;
+
+  const currentVideo = project.videos && project.videos[activeVideoIndex];
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close-btn" onClick={onClose} aria-label="Close modal">
+          <Icon.close width={20} height={20} />
+        </button>
+
+        <div className="modal-header">
+          <span className="modal-category">{project.category}</span>
+          <h3 className="modal-title">{project.title}</h3>
+        </div>
+
+        {project.videos && project.videos.length > 0 ? (
+          <>
+            {project.videos.length > 1 && (
+              <div className="modal-video-tabs">
+                {project.videos.map((vid, idx) => (
+                  <button
+                    key={vid.id}
+                    className={`video-tab-btn ${activeVideoIndex === idx ? 'active' : ''}`}
+                    onClick={() => setActiveVideoIndex(idx)}
+                  >
+                    Video 0{idx + 1}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            <div className="modal-video-container">
+              <iframe
+                src={`https://www.youtube.com/embed/${currentVideo.id}?autoplay=1&rel=0`}
+                title={`${project.title} - ${currentVideo.title}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </>
+        ) : (
+          <div className="modal-no-video">
+            <p>Video preview coming soon for this project!</p>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -766,6 +856,8 @@ function Footer() {
 /* APP                                                           */
 /* ---------------------------------------------------------- */
 export default function App() {
+  const [selectedProject, setSelectedProject] = useState(null);
+
   return (
     <div className="app">
       <Navbar />
@@ -774,9 +866,13 @@ export default function App() {
       <WhatIDo />
       <Experience />
       <Skills />
-      <FeaturedWork />
+      <FeaturedWork onSelectProject={(p) => setSelectedProject(p)} />
       <Contact />
       <Footer />
+
+      {selectedProject && (
+        <VideoModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+      )}
     </div>
   );
 }
