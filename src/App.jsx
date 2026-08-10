@@ -605,15 +605,19 @@ const PROJECTS = [
       { id: '8cQqXlbRBV4', title: 'Video 02 - From Fear to Relief' }
     ]
   },
-  {
-    id: 'kadhal',
-    title: 'Kadhal Ondrey Podhum',
-    category: 'Music Video',
-    img: kadhalImg,
-    videos: [
-      { id: 'NRSzsukdtCI', title: 'Official Music Video' }
-    ]
-  },
+{
+  id: 'oxytocin',
+  title: 'Oxytocin',
+  category: 'Short Film',
+  img: oxytocinImg,
+  videos: [
+    {
+      id: 'yKH4PFK6oio',
+      title: 'Official Short Film',
+      url: 'https://youtu.be/yKH4PFK6oio?si=0wc2Bpibe2UlBslE'
+    }
+  ]
+},
   {
     id: 'ranakalam',
     title: 'Ranakalam',
@@ -622,11 +626,13 @@ const PROJECTS = [
     videos: []
   },
   {
-    id: 'oxytocin',
-    title: 'Oxytocin',
-    category: 'Short Film',
-    img: oxytocinImg,
-    videos: []
+    id: 'kadhal',
+    title: 'Kadhal Ondrey Podhum',
+    category: 'Music Video',
+    img: kadhalImg,
+    videos: [
+      { id: 'NRSzsukdtCI', title: 'Official Music Video' }
+    ]
   },
   {
     id: 'one-blink',
@@ -698,6 +704,56 @@ function VideoModal({ project, onClose }) {
 
   const currentVideo = project.videos && project.videos[activeVideoIndex];
 
+  // Helper to validate video sources strictly
+  const parseVideoSource = (video) => {
+    if (!video) return { type: 'none', src: '' };
+    const src = video.url || video.src || video.id || '';
+    if (!src) return { type: 'none', src: '' };
+
+    // Strict 11-character YouTube video ID extraction
+    const ytMatch = src.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([a-zA-Z0-9_-]{11})/);
+    let ytId = null;
+
+    if (ytMatch && ytMatch[1]) {
+      ytId = ytMatch[1];
+    } else if (/^[a-zA-Z0-9_-]{11}$/.test(src)) {
+      ytId = src;
+    }
+
+    if (ytId) {
+      return {
+        type: 'youtube',
+        src: `https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0`
+      };
+    }
+
+    // Embed URL check with valid ID
+    if (src.includes('youtube.com/embed/')) {
+      const matchEmbed = src.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/);
+      if (matchEmbed && matchEmbed[1]) {
+        return {
+          type: 'youtube',
+          src: src.includes('autoplay=1') ? src : `${src}${src.includes('?') ? '&' : '?'}autoplay=1&rel=0`
+        };
+      }
+    }
+
+    // Check for direct video file extension or local video path
+    const isVideoFile = /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(src) || src.startsWith('blob:') || src.startsWith('data:video/');
+    if (isVideoFile) {
+      return { type: 'video', src };
+    }
+
+    // Direct local/relative video path or non-YouTube URL
+    if ((src.startsWith('/') || src.startsWith('http://') || src.startsWith('https://')) && !src.includes('youtube.com') && !src.includes('youtu.be')) {
+      return { type: 'video', src };
+    }
+
+    return { type: 'invalid', src: '' };
+  };
+
+  const videoSource = parseVideoSource(currentVideo);
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -710,13 +766,13 @@ function VideoModal({ project, onClose }) {
           <h3 className="modal-title">{project.title}</h3>
         </div>
 
-        {project.videos && project.videos.length > 0 ? (
+        {project.videos && project.videos.length > 0 && videoSource.type !== 'none' && videoSource.type !== 'invalid' ? (
           <>
             {project.videos.length > 1 && (
               <div className="modal-video-tabs">
                 {project.videos.map((vid, idx) => (
                   <button
-                    key={vid.id}
+                    key={vid.id || idx}
                     className={`video-tab-btn ${activeVideoIndex === idx ? 'active' : ''}`}
                     onClick={() => setActiveVideoIndex(idx)}
                   >
@@ -727,13 +783,22 @@ function VideoModal({ project, onClose }) {
             )}
 
             <div className="modal-video-container">
-              <iframe
-                src={`https://www.youtube.com/embed/${currentVideo.id}?autoplay=1&rel=0`}
-                title={`${project.title} - ${currentVideo.title}`}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+              {videoSource.type === 'video' ? (
+                <video
+                  src={videoSource.src}
+                  controls
+                  autoPlay
+                  style={{ width: '100%', height: '100%', borderRadius: 'inherit' }}
+                />
+              ) : (
+                <iframe
+                  src={videoSource.src}
+                  title={`${project.title} - ${currentVideo?.title || 'Video'}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              )}
             </div>
           </>
         ) : (
