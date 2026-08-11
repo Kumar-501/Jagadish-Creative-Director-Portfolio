@@ -136,8 +136,8 @@ const NAV_ITEMS = [
 const SOCIALS = [
   { key: 'linkedin', href: 'https://linkedin.com/in/jagadish-vijay-90a12a270', label: 'LinkedIn' },
   { key: 'instagram', href: 'https://www.instagram.com/jagadish__vijay/', label: 'Instagram' },
-  { key: 'youtube', href: 'https://youtube.com', label: 'YouTube' },
-  { key: 'mail', href: 'mailto:jagadishvijaysachin@gmail.com', label: 'Email' },
+  { key: 'youtube', href: 'https://www.youtube.com/@ZenithStarPictures', label: 'YouTube' },
+  { key: 'mail', href: 'https://mail.google.com/mail/?view=cm&fs=1&to=jagadishvijaysachin@gmail.com', label: 'Email' },
 ];
 
 /* ---------------------------------------------------------- */
@@ -605,19 +605,19 @@ const PROJECTS = [
       { id: '8cQqXlbRBV4', title: 'Video 02 - From Fear to Relief' }
     ]
   },
-{
-  id: 'oxytocin',
-  title: 'Oxytocin',
-  category: 'Short Film',
-  img: oxytocinImg,
-  videos: [
-    {
-      id: 'yKH4PFK6oio',
-      title: 'Official Short Film',
-      url: 'https://youtu.be/yKH4PFK6oio?si=0wc2Bpibe2UlBslE'
-    }
-  ]
-},
+  {
+    id: 'oxytocin',
+    title: 'Oxytocin',
+    category: 'Short Film',
+    img: oxytocinImg,
+    videos: [
+      {
+        id: 'yKH4PFK6oio',
+        title: 'Official Short Film',
+        url: 'https://youtu.be/yKH4PFK6oio?si=0wc2Bpibe2UlBslE'
+      }
+    ]
+  },
   {
     id: 'ranakalam',
     title: 'Ranakalam',
@@ -836,7 +836,12 @@ function Contact() {
             <p className="contact-text">
               Have a project in mind or want to collaborate? Let's create something impactful.
             </p>
-            <a href="mailto:jagadishvijaysachin@gmail.com" className="gold-btn">
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=jagadishvijaysachin@gmail.com"
+              target="_blank"
+              rel="noreferrer"
+              className="gold-btn"
+            >
               Get In Touch <Icon.arrow width={15} height={15} />
             </a>
           </Reveal>
@@ -848,7 +853,29 @@ function Contact() {
                   <span className="contact-row-icon">{Icon[r.icon]({ width: 17, height: 17 })}</span>
                   <div>
                     <div className="contact-row-label">{r.label}</div>
-                    <div className="contact-row-value">{r.value}</div>
+                    <div className="contact-row-value">
+                      {r.label === 'Email' ? (
+                        <a
+                          href="https://mail.google.com/mail/?view=cm&fs=1&to=jagadishvijaysachin@gmail.com"
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{ color: 'inherit', textDecoration: 'none' }}
+                        >
+                          {r.value}
+                        </a>
+                      ) : r.label === 'LinkedIn' ? (
+                        <a
+                          href="https://linkedin.com/in/jagadish-vijay-90a12a270"
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{ color: 'inherit', textDecoration: 'none' }}
+                        >
+                          {r.value}
+                        </a>
+                      ) : (
+                        r.value
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
