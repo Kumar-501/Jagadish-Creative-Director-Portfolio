@@ -4,6 +4,7 @@ import aboutImg from './about.png';
 import enzoltAdImg from './assets/enzoltad.png';
 import kadhalImg from './assets/kadhalondrepodhum.png';
 import ranakalamImg from './assets/ranakalam.png';
+import ranakalamVideo from './assets/Ranakalam.mp4';
 import oxytocinImg from './assets/oxytocin.png';
 import './App.css';
 
@@ -623,7 +624,13 @@ const PROJECTS = [
     title: 'Ranakalam',
     category: 'Short Film',
     img: ranakalamImg,
-    videos: []
+    videos: [
+      {
+        id: 'ranakalam-local',
+        title: 'Official Short Film',
+        src: ranakalamVideo
+      }
+    ]
   },
   {
     id: 'kadhal',
@@ -788,7 +795,9 @@ function VideoModal({ project, onClose }) {
                   src={videoSource.src}
                   controls
                   autoPlay
-                  style={{ width: '100%', height: '100%', borderRadius: 'inherit' }}
+                  playsInline
+                  preload="metadata"
+                  aria-label={`${project.title} - ${currentVideo?.title || 'Video'}`}
                 />
               ) : (
                 <iframe
@@ -906,34 +915,118 @@ function Contact() {
 /* FOOTER                                                        */
 /* ---------------------------------------------------------- */
 function Footer() {
+  const footerServices = [
+    'Creative Direction',
+    'Commercial Advertising',
+    'Video Production',
+    'Performance Marketing',
+    'AI Creative Workflows',
+  ];
+
   return (
     <footer className="footer">
+      <div className="footer-glow" />
+
       <div className="container">
-        <div className="footer-top">
-          <a href="#home" className="nav-logo">
-            <img src="/jagadishlogo.png" alt="Jagadish Vijay" className="nav-logo-mark" onError={onImgError} />
-            <span className="nav-logo-text">Jagadish Vijay</span>
-          </a>
+        <div className="footer-main">
+          <div className="footer-brand">
+            <a href="#home" className="footer-logo nav-logo" aria-label="Jagadish Vijay - Home">
+              <img
+                src="/jagadishlogo.png"
+                alt="Jagadish Vijay"
+                className="nav-logo-mark"
+                onError={onImgError}
+              />
+              <span className="nav-logo-text">Jagadish Vijay</span>
+            </a>
 
-          <nav className="footer-nav">
-            {NAV_ITEMS.map((item) => (
-              <a key={item.id} href={`#${item.id}`}>
-                {item.label}
-              </a>
-            ))}
-          </nav>
+            <p className="footer-tagline">
+              Creative marketing, cinematic storytelling, and performance-driven brand experiences
+              built to make brands memorable.
+            </p>
 
-          <div className="footer-socials">
-            {SOCIALS.map((s) => (
-              <a key={s.key} href={s.href} className="social-icon" aria-label={s.label} target="_blank" rel="noreferrer">
-                {Icon[s.key]({ width: 14, height: 14 })}
+            <a href="#contact" className="footer-cta">
+              <span>Let's Work Together</span>
+              <Icon.arrow width={16} height={16} />
+            </a>
+          </div>
+
+          <div className="footer-column">
+            <h3 className="footer-column-title">Explore</h3>
+            <nav className="footer-nav footer-nav-column" aria-label="Footer navigation">
+              {NAV_ITEMS.map((item) => (
+                <a key={item.id} href={`#${item.id}`}>
+                  {item.label}
+                </a>
+              ))}
+              <a href="#what-i-do">What I Do</a>
+              <a href="#contact">Contact</a>
+            </nav>
+          </div>
+
+          <div className="footer-column">
+            <h3 className="footer-column-title">Services</h3>
+            <ul className="footer-service-list">
+              {footerServices.map((service) => (
+                <li key={service}>{service}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="footer-column footer-connect">
+            <h3 className="footer-column-title">Connect</h3>
+
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=jagadishvijaysachin@gmail.com"
+              target="_blank"
+              rel="noreferrer"
+              className="footer-email"
+            >
+              jagadishvijaysachin@gmail.com
+            </a>
+
+            <a href="tel:+916374602818" className="footer-phone">
+              +91 63746 02818
+            </a>
+
+            <div className="footer-socials" aria-label="Social links">
+              {SOCIALS.map((s) => (
+                <a
+                  key={s.key}
+                  href={s.href}
+                  className="social-icon"
+                  aria-label={s.label}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {Icon[s.key]({ width: 14, height: 14 })}
+                </a>
+              ))}
+
+              <a
+                href="https://behance.net"
+                className="social-icon"
+                aria-label="Behance"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {Icon.behance({ width: 14, height: 14 })}
               </a>
-            ))}
+            </div>
           </div>
         </div>
 
+        <div className="footer-divider" />
+
         <div className="footer-bottom">
-          <p className="footer-copy">&copy; 2025 Jagadish Vijay. All Rights Reserved.</p>
+          <p className="footer-copy">
+            &copy; {new Date().getFullYear()} Jagadish Vijay. All Rights Reserved.
+          </p>
+
+          <p className="footer-location">
+            Creative Marketing Strategist &bull; Creative Director &bull; Brand Storyteller
+          </p>
+
           <div className="footer-legal">
             <a href="#">Privacy Policy</a>
             <a href="#">Terms &amp; Conditions</a>
