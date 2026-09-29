@@ -19,17 +19,20 @@ import { Contact } from './components/sections/Contact';
 import { VideoModal } from './components/modals/VideoModal';
 import { ImageModal } from './components/modals/ImageModal';
 
-export default function App() {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [standaloneVideo, setStandaloneVideo] = useState(null);
-  const [lightboxImage, setLightboxImage] = useState(null);
+// Type definitions
+import { Project } from './data/portfolioData';
 
-  const handlePlayStandaloneVideo = (title, embedUrl) => {
+export default function App() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [standaloneVideo, setStandaloneVideo] = useState<{ title: string; embedUrl: string } | null>(null);
+  const [lightboxImage, setLightboxImage] = useState<{ title: string; imgUrl: string; caption: string } | null>(null);
+
+  const handlePlayStandaloneVideo = (title: string, embedUrl: string) => {
     setSelectedProject(null);
     setStandaloneVideo({ title, embedUrl });
   };
 
-  const handleOpenImage = (title, imgUrl, caption) => {
+  const handleOpenImage = (title: string, imgUrl: string, caption: string) => {
     setLightboxImage({ title, imgUrl, caption });
   };
 
