@@ -25,24 +25,7 @@ export function FilmExposure({ onPlayVideo, onOpenImage }: FilmExposureProps) {
           </p>
         </Reveal>
 
-        <Reveal className="film-intro">
-          <div className="film-intro-copy">
-            <h3>ON-SET EXPERIENCE</h3>
-            <p>
-              My filmmaking journey has provided opportunities to work alongside industry professionals Lokesh Kanagaraj,
-              Manikandan, and Anbariv Masters.
-            </p>
-            <p>
-              These experiences offered valuable exposure to direction, performance, action choreography, visual storytelling,
-              and on-set execution, shaping my approach to creative strategy, scripting, direction, and content production.
-            </p>
-          </div>
 
-          <div className="film-intro-badge">
-            <span>JV</span>
-            <small>ON-SET<br />EXPERIENCE</small>
-          </div>
-        </Reveal>
 
         {/* Feature 01: LEO Climax Fight Sequence */}
         <Reveal variant="left" className="film-hero-feature">
