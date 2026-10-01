@@ -9,15 +9,7 @@ interface FilmExposureProps {
 }
 
 export function FilmExposure({ onPlayVideo, onOpenImage }: FilmExposureProps) {
-  // Click-to-reveal state for Instagram posters
-  const [revealedPosters, setRevealedPosters] = useState<Record<string, boolean>>({});
-
-  const toggleReveal = (id: string) => {
-    setRevealedPosters((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
+  const [galleryRevealed, setGalleryRevealed] = useState(false);
 
   return (
     <section id="film-exposure" className="film-exposure section-pad">
@@ -35,17 +27,20 @@ export function FilmExposure({ onPlayVideo, onOpenImage }: FilmExposureProps) {
 
         <Reveal className="film-intro">
           <div className="film-intro-copy">
-            <h3>From Real Sets to Final Frames</h3>
+            <h3>ON-SET EXPERIENCE</h3>
             <p>
-              Cinematography, stunt staging, actor rhythm, and directing aren't just theoretical to me.
-              I have walked active movie sets, acted in front of the lens, and absorbed the discipline of major productions
-              like Thalapathy Vijay's <em>LEO</em> and RJ Balaji's <em>Singapore Saloon</em>.
+              My filmmaking journey has provided opportunities to work alongside industry professionals Lokesh Kanagaraj,
+              Manikandan, and Anbariv Masters.
+            </p>
+            <p>
+              These experiences offered valuable exposure to direction, performance, action choreography, visual storytelling,
+              and on-set execution, shaping my approach to creative strategy, scripting, direction, and content production.
             </p>
           </div>
 
           <div className="film-intro-badge">
             <span>JV</span>
-            <small>FILM SET<br />EXPERIENCE</small>
+            <small>ON-SET<br />EXPERIENCE</small>
           </div>
         </Reveal>
 
@@ -137,117 +132,101 @@ export function FilmExposure({ onPlayVideo, onOpenImage }: FilmExposureProps) {
         <Reveal className="insta-posters-section">
           <div className="insta-section-header">
             <div className="insta-header-copy">
-              <h3>Click to Reveal Instagram Posters</h3>
+              <h3>ON-SET EXPERIENCE</h3>
               <p>
-                Click each card below to unveil the official character look poster and on-set production stills.
-                You can also zoom the revealed poster or visit the original Instagram post!
+                Worked as an artist in film productions, gaining firsthand exposure to professional film sets, including direction, camera execution, action choreography, actor coordination, and the overall filmmaking process.
               </p>
             </div>
 
             <div className="insta-header-badge">
               <span className="gold-btn" style={{ cursor: 'default' }}>
-                <Icon.sparkles width={14} height={14} /> INSTAGRAM REVEALS
+                <Icon.sparkles width={14} height={14} /> ACTING &amp; PRODUCTION EXPOSURE
               </span>
             </div>
           </div>
 
-          <div className="insta-grid">
-            {INSTA_POSTERS.map((post) => {
-              const isRevealed = !!revealedPosters[post.id];
+          {!galleryRevealed ? (
+            <div
+              className="insta-unrevealed insta-gallery-reveal"
+              onClick={() => setGalleryRevealed(true)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') setGalleryRevealed(true);
+              }}
+              aria-label="Reveal the film set experience images"
+            >
+              <div className="insta-shutter-glyph">
+                <Icon.camera width={32} height={32} />
+              </div>
+              <h4 className="insta-reveal-title">Film Set Experience | Acting &amp; Production Exposure</h4>
+              <p className="insta-reveal-subtitle">Tap to reveal the three photos</p>
 
-              return (
+              <button
+                type="button"
+                className="insta-reveal-cta"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setGalleryRevealed(true);
+                }}
+              >
+                <Icon.eye width={15} height={15} /> REVEAL PHOTOS
+              </button>
+            </div>
+          ) : (
+            <div className="insta-grid">
+              {INSTA_POSTERS.map((post) => (
                 <div key={post.id} className="insta-poster-card">
-                  {!isRevealed ? (
-                    /* UNREVEALED TEASER STATE */
+                  <div className="insta-revealed">
                     <div
-                      className="insta-unrevealed"
-                      onClick={() => toggleReveal(post.id)}
-                      role="button"
-                      tabIndex={0}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') toggleReveal(post.id);
-                      }}
-                      aria-label={`Click to reveal ${post.title} poster`}
+                      className="insta-poster-image-wrap"
+                      onClick={() => onOpenImage(post.title, post.posterImage, post.caption)}
+                      title="Click to view full size"
                     >
-                      <div className="insta-shutter-glyph">
-                        <Icon.camera width={32} height={32} />
+                      <img
+                        src={post.posterImage}
+                        alt={post.title}
+                        className="insta-poster-img"
+                      />
+                      <div className="insta-poster-overlay">
+                        <div className="insta-badge-top">
+                          <button
+                            type="button"
+                            className="insta-hide-btn"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setGalleryRevealed(false);
+                            }}
+                          >
+                            Hide
+                          </button>
+                        </div>
                       </div>
-                      <span className="film-card-tag">{post.category}</span>
-                      <h4 className="insta-reveal-title">{post.title}</h4>
-                      <p className="insta-reveal-subtitle">
-                        Official promotional poster hidden. Tap the button or card to reveal the full poster!
-                      </p>
+                    </div>
+
+                    <div className="insta-poster-footer">
+                      <a
+                        href={post.postUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="insta-link-btn"
+                      >
+                        <Icon.instagram width={16} height={16} /> View on Instagram
+                      </a>
 
                       <button
                         type="button"
-                        className="insta-reveal-cta"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleReveal(post.id);
-                        }}
+                        className="insta-zoom-btn"
+                        onClick={() => onOpenImage(post.title, post.posterImage, post.caption)}
                       >
-                        <Icon.eye width={15} height={15} /> REVEAL POSTER
+                        <Icon.eye width={14} height={14} /> Full Poster
                       </button>
                     </div>
-                  ) : (
-                    /* REVEALED POSTER STATE */
-                    <div className="insta-revealed">
-                      <div
-                        className="insta-poster-image-wrap"
-                        onClick={() => onOpenImage(post.title, post.posterImage, post.caption)}
-                        title="Click to view full size"
-                      >
-                        <img
-                          src={post.posterImage}
-                          alt={post.title}
-                          className="insta-poster-img"
-                        />
-                        <div className="insta-poster-overlay">
-                          <div className="insta-badge-top">
-                            <span className="insta-revealed-tag">✓ {post.badge}</span>
-                            <button
-                              type="button"
-                              className="insta-hide-btn"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                toggleReveal(post.id);
-                              }}
-                            >
-                              Hide
-                            </button>
-                          </div>
-
-                          <div className="insta-poster-meta">
-                            <h4 className="insta-poster-title">{post.title}</h4>
-                            <p className="insta-poster-desc">{post.caption}</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="insta-poster-footer">
-                        <a
-                          href={post.postUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="insta-link-btn"
-                        >
-                          <Icon.instagram width={16} height={16} /> View on Instagram
-                        </a>
-
-                        <button
-                          type="button"
-                          className="insta-zoom-btn"
-                          onClick={() => onOpenImage(post.title, post.posterImage, post.caption)}
-                        >
-                          <Icon.eye width={14} height={14} /> Full Poster
-                        </button>
-                      </div>
-                    </div>
-                  )}
+                  </div>
                 </div>
-              );
-            })}
-          </div>
+              ))}
+            </div>
+          )}
         </Reveal>
 
         {/* CINEMA TO COMMERCE BANNER */}
