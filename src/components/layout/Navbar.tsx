@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { NAV_ITEMS } from '../../data/portfolioData';
+import { CONTACT_EMAIL_URL, NAV_ITEMS } from '../../data/portfolioData';
 import { Icon } from '../common/Icons';
 
 export function Navbar() {
@@ -54,7 +54,7 @@ export function Navbar() {
             </ul>
           </nav>
 
-          <a href="#contact" className="gold-btn nav-cta">
+          <a href={CONTACT_EMAIL_URL} target="_blank" rel="noreferrer" className="gold-btn nav-cta">
             <span>LET'S CONNECT</span> <Icon.arrow width={15} height={15} />
           </a>
 
@@ -80,7 +80,7 @@ export function Navbar() {
             {item.label}
           </a>
         ))}
-        <a href="#contact" className="gold-btn" onClick={handleNavClick} style={{ marginTop: '14px' }}>
+        <a href={CONTACT_EMAIL_URL} target="_blank" rel="noreferrer" className="gold-btn" onClick={handleNavClick} style={{ marginTop: '14px' }}>
           Let's Work Together <Icon.arrow width={14} height={14} />
         </a>
       </div>

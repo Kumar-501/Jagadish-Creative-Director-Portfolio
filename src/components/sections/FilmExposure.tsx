@@ -24,53 +24,7 @@ export function FilmExposure({ onPlayVideo, onOpenImage }: FilmExposureProps) {
             From live-action stunts to on-screen performance and camera direction.
           </p>
         </Reveal>
-
-
-
-        {/* Feature 01: LEO Climax Fight Sequence */}
-        <Reveal variant="left" className="film-hero-feature">
-          <div className="film-hero-feature-copy">
-            <div className="film-feature-top">
-              <span className="film-feature-number">01</span>
-              <span className="film-feature-tag">FEATURE FILM EXPERIENCE • CLIMAX FIGHT</span>
-            </div>
-
-            <h3 className="film-feature-title">LEO</h3>
-            <p className="film-feature-subtitle">Climax Fight Sequence Stunt &amp; Film Set Exposure</p>
-
-            <p className="film-feature-text">
-              Selected sequence from the intense climax fight of Lokesh Kanagaraj's blockbuster <em>LEO</em>.
-              Gained high-adrenaline film set exposure, observing multi-camera setups, dust/fx staging, and high-impact action choreography.
-            </p>
-
-            <div className="film-feature-meta">
-              <span className="film-meta-chip">Thalapathy Vijay</span>
-              <span className="film-meta-chip">Action Set Exposure</span>
-              <span className="film-meta-chip">Timestamp 00:51</span>
-            </div>
-
-            <button
-              onClick={() => onPlayVideo('LEO - Climax Fight Sequence', 'https://www.youtube.com/embed/OcXGKpFSYkI?start=51&autoplay=1&rel=0')}
-              className="gold-btn"
-            >
-              <Icon.play width={14} height={14} /> WATCH SCENE (00:51)
-            </button>
-          </div>
-
-          <div className="film-video-wrapper">
-            <div className="film-video-badge">SCENE / 00:51</div>
-            <div className="film-video-container">
-              <iframe
-                src="https://www.youtube.com/embed/OcXGKpFSYkI?start=51&rel=0"
-                title="LEO Climax Fight Sequence"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        </Reveal>
-
-        {/* Grid of other Film / Acting experiences */}
+        {/* Film and acting experiences */}
         <div className="film-grid">
           {FILM_EXPERIENCES.map((item, idx) => (
             <Reveal

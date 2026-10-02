@@ -13,7 +13,6 @@ import { Experience } from './components/sections/Experience';
 import { FilmExposure } from './components/sections/FilmExposure';
 import { Skills } from './components/sections/Skills';
 import { FeaturedWork } from './components/sections/FeaturedWork';
-import { Contact } from './components/sections/Contact';
 
 // Modal components
 import { VideoModal } from './components/modals/VideoModal';
@@ -54,8 +53,6 @@ export default function App() {
       
       {/* Featured Commercial & Film Work */}
       <FeaturedWork onSelectProject={(p) => setSelectedProject(p)} />
-
-      <Contact />
 
       {/* Global Footer */}
       <Footer />

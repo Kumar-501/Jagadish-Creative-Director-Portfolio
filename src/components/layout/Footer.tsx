@@ -1,4 +1,4 @@
-import { NAV_ITEMS, SOCIALS } from '../../data/portfolioData';
+import { CONTACT_EMAIL_URL, NAV_ITEMS, SOCIALS } from '../../data/portfolioData';
 import { Icon } from '../common/Icons';
 
 export function Footer() {
@@ -11,7 +11,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="footer">
+    <footer id="contact" className="footer">
       <div className="footer-glow" />
 
       <div className="container">
@@ -28,7 +28,7 @@ export function Footer() {
               Creative marketing, cinematic storytelling, and performance-driven campaigns built to make brands memorable.
             </p>
 
-            <a href="#contact" className="footer-cta">
+            <a href={CONTACT_EMAIL_URL} target="_blank" rel="noreferrer" className="footer-cta">
               <span>Let's Work Together</span>
               <Icon.arrow width={15} height={15} />
             </a>
@@ -58,7 +58,7 @@ export function Footer() {
             <h3 className="footer-column-title">Connect</h3>
 
             <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=jagadishvijaysachin@gmail.com"
+              href={CONTACT_EMAIL_URL}
               target="_blank"
               rel="noreferrer"
               className="footer-email"
@@ -66,7 +66,7 @@ export function Footer() {
               jagadishvijaysachin@gmail.com
             </a>
 
-            <a href="tel:+916374602818" className="footer-phone">
+            <a href="https://wa.me/916374602818" className="footer-phone" target="_blank" rel="noreferrer">
               +91 63746 02818
             </a>
 
@@ -83,15 +83,6 @@ export function Footer() {
                   {Icon[s.key as keyof typeof Icon]({ width: 14, height: 14 })}
                 </a>
               ))}
-              <a
-                href="https://behance.net"
-                className="social-icon"
-                aria-label="Behance"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {Icon.behance({ width: 14, height: 14 })}
-              </a>
             </div>
           </div>
         </div>

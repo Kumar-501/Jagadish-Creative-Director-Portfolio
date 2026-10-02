@@ -15,16 +15,19 @@ export const NAV_ITEMS: NavItem[] = [
   { id: 'contact', label: 'Contact' },
 ];
 
+export const CONTACT_EMAIL_URL = 'https://mail.google.com/mail/?view=cm&fs=1&to=jagadishvijaysachin@gmail.com';
+
 export const SOCIALS = [
   { key: 'linkedin', href: 'https://linkedin.com/in/jagadish-vijay-90a12a270', label: 'LinkedIn' },
   { key: 'instagram', href: 'https://www.instagram.com/jagadish__vijay/', label: 'Instagram' },
   { key: 'youtube', href: 'https://www.youtube.com/@ZenithStarPictures', label: 'YouTube' },
-  { key: 'mail', href: 'https://mail.google.com/mail/?view=cm&fs=1&to=jagadishvijaysachin@gmail.com', label: 'Email' },
+  { key: 'whatsapp', href: 'https://wa.me/916374602818', label: 'WhatsApp' },
+  { key: 'mail', href: CONTACT_EMAIL_URL, label: 'Email' },
 ];
 
 export const STATS = [
-  { icon: 'briefcase', number: '4+', label: 'Years Experience' },
-  { icon: 'bulb', number: '100+', label: 'Creative Projects' },
+  { icon: 'briefcase', number: '6+', label: 'Years Experience' },
+  { icon: 'bulb', number: '25+', label: 'Creative Projects' },
   { icon: 'clapper', number: '6+', label: 'Film & Album Sets' },
   { icon: 'rupee', number: '₹7.12L+', label: 'Revenue Generated' },
 ];
@@ -108,8 +111,21 @@ export interface FilmProject {
 
 export const FILM_EXPERIENCES: FilmProject[] = [
   {
-    id: 'singapore-saloon',
+    id: 'leo',
     number: '01',
+    title: 'LEO',
+    category: 'Tamil Feature Film • Film Set Exposure',
+    timestampBadge: 'Scene / 00:51',
+    description:
+      "Selected sequence from the intense climax fight of Lokesh Kanagaraj's blockbuster LEO. Gained high-adrenaline film set exposure, observing multi-camera setups, dust/fx staging, and high-impact action choreography.",
+    youtubeUrl: 'https://youtu.be/OcXGKpFSYkI?t=51',
+    embedUrl: 'https://www.youtube.com/embed/OcXGKpFSYkI?start=51&rel=0',
+    thumbnail: 'https://img.youtube.com/vi/OcXGKpFSYkI/hqdefault.jpg',
+    roleTag: 'Climax Fight Sequence',
+  },
+  {
+    id: 'singapore-saloon',
+    number: '02',
     title: 'Singapore Saloon',
     category: 'Tamil Feature Film • Acting Exposure',
     timestampBadge: 'Scene / 52:32',
@@ -122,7 +138,7 @@ export const FILM_EXPERIENCES: FilmProject[] = [
   },
 {
   id: 'nee-mattum-podhum',
-  number: '02',
+  number: '03',
   title: 'Nee Mattum Podhum',
   category: 'Tamil Album Song • Actor',
   timestampBadge: 'Scene / 01:54',
@@ -135,7 +151,7 @@ export const FILM_EXPERIENCES: FilmProject[] = [
 },
 {
   id: 'WURAN POLLUTION | AWARD WINNING SHORT FILM | MADHAN RAJ | SILENT FILM | ENVIRONMENTAL POLLUTION | 4K',
-  number: '03',
+  number: '04',
   title: 'WURAN POLLUTION | AWARD WINNING SHORT FILM | MADHAN RAJ | SILENT FILM | ENVIRONMENTAL POLLUTION | 4K',
   category: 'Tamil Short Film • Actor',
   timestampBadge: 'Award-Winning Silent Film',
@@ -203,7 +219,7 @@ export const SKILLS = [
   },
   {
     title: 'AI & Production Tools',
-    items: ['ChatGPT & Claude Scripting', 'Midjourney / AI Moodboards', 'Canva Pro Design Workflows', 'Film Rigging & Gimbal Ops', 'Premiere Pro & DaVinci'],
+    items: ['ChatGPT, Claude & Gemini AI Workflows', 'Canva & Other AI Workflows', 'Midjourney / AI Moodboards', 'Film Rigging & Gimbal Ops', 'Premiere Pro & DaVinci'],
   },
 ];
 
@@ -220,7 +236,7 @@ export const PROJECTS: Project[] = [
     id: 'enzolt',
     title: 'Enzolt Energy Commercial Campaign',
     category: 'Commercial Advertisement',
-    img: '/images/commercial-ad.jpg',
+    img: '/images/enzoltthumbnail.jpeg',
     videos: [
       { id: 'Xhws3rqOK34', title: 'Video 01 - Product Overview' },
       { id: '8cQqXlbRBV4', title: 'Video 02 - From Fear to Relief' }
