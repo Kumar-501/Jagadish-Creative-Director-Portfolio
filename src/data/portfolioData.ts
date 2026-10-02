@@ -133,7 +133,7 @@ export const FILM_EXPERIENCES: FilmProject[] = [
       'Acting exposure and film set experience in RJ Balaji\'s Tamil feature film Singapore Saloon. Experience on a major theatrical set with ensemble cast and live production blocking.',
     youtubeUrl: 'https://youtu.be/lkq10uvDVsw?si=xgKNxpSTU3rzwbiu&t=3152',
     embedUrl: 'https://www.youtube.com/embed/lkq10uvDVsw?start=3152&rel=0',
-    thumbnail: '/images/singaporesalon.png',
+    thumbnail: '/images/Singapore%20Salon_%20Birds,%20City%20and%20Legends.png',
     roleTag: 'Feature Film Acting',
   },
 {
