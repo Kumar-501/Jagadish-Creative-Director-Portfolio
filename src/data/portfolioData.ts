@@ -136,9 +136,22 @@ export const FILM_EXPERIENCES: FilmProject[] = [
     thumbnail: '/images/Singapore%20Salon_%20Birds,%20City%20and%20Legends.png',
     roleTag: 'Feature Film Acting',
   },
+    {
+    id: 'thozhar-che-guevara',
+    number: '03',
+    title: 'Thozhar Che Guevara',
+    category: 'Tamil Feature Film • Acting Exposure',
+    timestampBadge: 'Scene / 44:14',
+    description:
+      'Acting exposure and film set experience in the Tamil feature film Thozhar Che Guevara, starring Sathyaraj, Motta Rajendran, Cool Suresh and Nanjil Sampath. Worked alongside a seasoned ensemble cast and learned scene execution on a live production set.',
+    youtubeUrl: 'https://youtu.be/9UHCqwACwfk?si=6QNbj2Pb6PMsjHtp&t=2654',
+    embedUrl: 'https://www.youtube.com/embed/9UHCqwACwfk?start=2654&rel=0',
+    thumbnail: 'https://img.youtube.com/vi/9UHCqwACwfk/hqdefault.jpg',
+    roleTag: 'Feature Film Acting',
+  },
 {
   id: 'nee-mattum-podhum',
-  number: '03',
+  number: '04',
   title: 'Nee Mattum Podhum',
   category: 'Tamil Album Song • Actor',
   timestampBadge: 'Scene / 01:54',
@@ -151,7 +164,7 @@ export const FILM_EXPERIENCES: FilmProject[] = [
 },
 {
   id: 'WURAN POLLUTION | AWARD WINNING SHORT FILM | MADHAN RAJ | SILENT FILM | ENVIRONMENTAL POLLUTION | 4K',
-  number: '04',
+  number: '05',
   title: 'WURAN POLLUTION | AWARD WINNING SHORT FILM | MADHAN RAJ | SILENT FILM | ENVIRONMENTAL POLLUTION | 4K',
   category: 'Tamil Short Film • Actor',
   timestampBadge: 'Award-Winning Silent Film',
@@ -219,7 +232,7 @@ export const SKILLS = [
   },
   {
     title: 'AI & Production Tools',
-    items: ['ChatGPT, Claude & Gemini AI Workflows', 'Canva & Other AI Workflows', 'Midjourney / AI Moodboards', 'Film Rigging & Gimbal Ops', 'Premiere Pro & DaVinci'],
+    items: ['ChatGPT, Claude & Gemini AI Workflows', 'Canva & Other AI Workflows', 'Midjourney / AI Moodboards'],
   },
 ];
 
