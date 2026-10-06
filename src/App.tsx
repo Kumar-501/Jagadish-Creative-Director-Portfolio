@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 import { useState } from 'react';
 import './App.css';
 
@@ -45,17 +47,17 @@ export default function App() {
       <About />
       <WhatIDo />
       <Experience />
-      
+
+      {/* Featured Commercial & Film Work */}
+      <FeaturedWork onSelectProject={(p) => setSelectedProject(p)} />
+
+      <Skills />
+
       {/* Film Set Experience & Acting Production Exposure */}
       <FilmExposure
         onPlayVideo={handlePlayStandaloneVideo}
         onOpenImage={handleOpenImage}
       />
-
-      <Skills />
-      
-      {/* Featured Commercial & Film Work */}
-      <FeaturedWork onSelectProject={(p) => setSelectedProject(p)} />
 
       {/* Global Footer */}
       <Footer />

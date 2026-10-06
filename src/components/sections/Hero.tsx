@@ -27,11 +27,11 @@ export function Hero() {
             <div className="roles-divider" />
           </div>
 
-    <p className="hero-para">
-  I create commercial campaigns, cinematic advertisements, and brand
-  experiences that combine creativity, storytelling, AI workflows,
-  and performance marketing to drive measurable business growth.
-</p>
+          <p className="hero-para">
+            I create commercial campaigns, cinematic advertisements, and brand
+            experiences that combine creativity, storytelling, AI workflows,
+            and performance marketing to drive measurable business growth.
+          </p>
 
           <div className="hero-actions">
             <a href="#film-exposure" className="gold-btn">
@@ -43,7 +43,7 @@ export function Hero() {
             </a>
 
             <a
-              href="/Jagadish_Vijay_Creative_Strategist_Resume.pdf"
+              href="/Jagadish_Vijay_Creative_Strategist_Resume%20%285%29.pdf"
               download="Jagadish_Vijay_Creative_Strategist_Resume.pdf"
               className="ghost-btn"
             >

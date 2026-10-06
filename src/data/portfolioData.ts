@@ -74,10 +74,12 @@ export const EXPERIENCE = [
   },
   {
     date: '2020 – 2022',
-    role: 'Marketing Executive',
-    company: 'DCS Motor (Royal Enfield Dealership)',
+    role: 'Marketing & Sales Executive',
+    company: 'Sri Vishnu Engineering',
     points: [
-      'Managed retail sales and marketing for riding gear and accessories, driving customer engagement and on-ground activations.',
+      'Generated B2B service enquiries through IndiaMART and walk-in client outreach.',
+      'Managed client communication, requirements, follow-ups, and service business conversion.',
+      'Supported marketing and sales for industrial maintenance, repair, installation, and fabrication services.',
     ],
   },
 ];

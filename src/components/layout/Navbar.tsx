@@ -29,13 +29,16 @@ export function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  const handleNavClick = () => setOpen(false);
+  const handleNavClick = (id?: string) => {
+    if (id) setActive(id);
+    setOpen(false);
+  };
 
   return (
     <>
       <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="container">
-          <a href="#home" className="nav-logo" onClick={handleNavClick}>
+          <a href="#home" className="nav-logo" onClick={() => handleNavClick('home')}>
             <img src="/images/logocreative.png" alt="" className="nav-badge-mark" />
             <span className="nav-logo-text">
               Jagadish <span>Vijay</span>
@@ -46,7 +49,11 @@ export function Navbar() {
             <ul className="nav-links">
               {NAV_ITEMS.map((item) => (
                 <li key={item.id}>
-                  <a href={`#${item.id}`} className={active === item.id ? 'active' : ''}>
+                  <a
+                    href={`#${item.id}`}
+                    className={active === item.id ? 'active' : ''}
+                    onClick={() => handleNavClick(item.id)}
+                  >
                     {item.label}
                   </a>
                 </li>
@@ -75,12 +82,19 @@ export function Navbar() {
             key={item.id}
             href={`#${item.id}`}
             className={active === item.id ? 'active' : ''}
-            onClick={handleNavClick}
+            onClick={() => handleNavClick(item.id)}
           >
             {item.label}
           </a>
         ))}
-        <a href={CONTACT_EMAIL_URL} target="_blank" rel="noreferrer" className="gold-btn" onClick={handleNavClick} style={{ marginTop: '14px' }}>
+        <a
+          href={CONTACT_EMAIL_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="gold-btn"
+          onClick={() => handleNavClick()}
+          style={{ marginTop: '14px' }}
+        >
           Let's Work Together <Icon.arrow width={14} height={14} />
         </a>
       </div>
